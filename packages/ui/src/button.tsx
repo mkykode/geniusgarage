@@ -4,30 +4,26 @@ type ButtonProps = PropsWithChildren<{
   variant?: 'primary' | 'secondary',
   onClick?: MouseEventHandler<HTMLButtonElement>
 }>
-export function Button({
-  variant = 'primary',
-  onClick,
-  children
-}: ButtonProps) {
+export function Button({ children, variant = 'primary', onClick }: ButtonProps) {
   const baseStyles = {
-    padding: '0.75rem 1.5rem',
-    fontSize: '1rem',
-    border: 'none',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
+    padding: '12px 24px',
+    borderRadius: '8px',
+    fontSize: '16px',
     fontWeight: '600',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   }
 
   const variantStyles = {
-    primary: {
-      backgroundColor: '#0070f3',
-      color: 'white',
-    },
-    secondary: {
-      backgroundColor: '#f5f5f5',
-      color: '#333',
-      border: '1px solid #e5e7eb',
-    },
+    primary: { background: '#d946ef', color: 'white' },
+    secondary: { background: '#f3f4f6', color: '#1f2937', border: '1px solid #e5e7eb' },
+  }
+
+  const hoverStyles = {
+    transform: 'translateY(-1px)',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
   }
 
   return (
