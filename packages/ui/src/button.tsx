@@ -1,10 +1,9 @@
-import { ButtonHTMLAttributes, MouseEventHandler, PropsWithChildren, SyntheticEvent } from "react";
+import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
-type ButtonProps = PropsWithChildren<{
-  variant?: 'primary' | 'secondary',
-  onClick?: MouseEventHandler<HTMLButtonElement>
-}>
-export function Button({ children, variant = 'primary', onClick }: ButtonProps) {
+type ButtonProps = ComponentPropsWithoutRef<'button'> & {
+  variant?: 'primary' | 'secondary';
+};
+export function Button({ children, variant = 'primary', ...props }: ButtonProps) {
   const baseStyles = {
     padding: '12px 24px',
     borderRadius: '8px',
@@ -28,8 +27,8 @@ export function Button({ children, variant = 'primary', onClick }: ButtonProps) 
 
   return (
     <button
-      onClick={onClick}
       style={{ ...baseStyles, ...variantStyles[variant] }}
+      {...props}
     >
       {children}
     </button>

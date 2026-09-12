@@ -1,7 +1,8 @@
 'use client'
 
 import { Button } from "@geniusgarage/ui/button"
-import { Card } from "@geniusgarage/ui/card"
+import { SnippetCard } from "@geniusgarage/ui/snippet-card";
+import { useRef, useState } from "react";
 
 // TODO: Import Button from '@geniusgarage/ui/button'
 // TODO: Import Card from '@geniusgarage/ui/card'
@@ -23,14 +24,16 @@ interface Snippet {
   language: string
   code: string
   tags: string[]
+  createdAt: string
 }
-const mockSnippets: Snippet[] = [
+const initialSnippets: Snippet[] = [
   {
     id: 1,
     title: 'Array Reduce Pattern',
     language: 'javascript',
     code: 'const sum = arr.reduce((acc, n) => acc + n, 0)',
     tags: ['javascript', 'array', 'functional'],
+    createdAt: 'Jan 15, 2026',  // Add this
   },
   {
     id: 2,
@@ -41,6 +44,7 @@ const mockSnippets: Snippet[] = [
   return () => clearTimeout(timer)
 }, [])`,
     tags: ['react', 'hooks', 'typescript'],
+    createdAt: 'Feb 20, 2026',  // Add this
   },
   {
     id: 3,
@@ -48,58 +52,119 @@ const mockSnippets: Snippet[] = [
     language: 'javascript',
     code: 'const results = await Promise.all(promises.map(p => p()))',
     tags: ['javascript', 'async', 'promises'],
+    createdAt: 'Mar 10, 2026',  // Add this
   },
 ]
+const labelClass = 'text-sm font-medium text-gray-700'
+
+const fieldClass =
+  'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand focus:ring-2 focus:ring-brand/30 focus:outline-none'
 
 export default function Home() {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const [snippets, setSnippets] = useState<Snippet[]>(initialSnippets)
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8 min-w-screen">
       <div className="max-w-6xl mx-auto">
         {/* TODO: Add header div with flex layout */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold">My Snippets</h1>
-          <Button onClick={() => console.log('Create snippet')}>
+          <Button
+            onClick={() => {
+              if (!dialogRef.current) return
+              dialogRef.current?.showModal()
+              // setShowModal(true)
+              // setNewSnippet({ title: '', language: 'javascript', code: '', tags: '' })
+            }}
+          >
             + New Snippet
           </Button>
         </div>
 
-        {/* TODO: Add grid div that maps over mockSnippets */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {mockSnippets.map((snippet) => (
-            <Card key={snippet.id}>
-              <div className="space-y-3">
-                {/* Title and Language */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-1">{snippet.title}</h3>
-                  <span className="text-sm text-gray-500 font-mono">
-                    {snippet.language}
-                  </span>
-                </div>
+        {/* TODO: Add modal - render only when showModal is true */}
+        <dialog
+          ref={dialogRef}
+          id="modal"
+          className="m-auto w-[min(34rem,calc(100vw-2rem))] rounded-2xl bg-white p-0 shadow-2xl backdrop:bg-gray-900/60"
+        >
+          <form
+            action={(data: FormData) => {
+              const newSnippet = {
+                id: new Date().getTime(),
+                title: String(data.get('title') ?? ''),
+                language: String(data.get('language') ?? ''),
+                code: String(data.get('code') ?? ''),
+                tags: String(data.get('tags') ?? '')?.split(',').map(s => s.trim()).filter(Boolean),
+                createdAt: new Date().toLocaleDateString('en-us', { month: 'short', day: 'numeric', year: 'numeric' })
+              }
+              setSnippets((prev) => [
+                ...prev,
+                newSnippet
+              ])
+              dialogRef.current?.close()
+            }}
+          >
+            <header className="border-b border-gray-200 px-6 py-4">
+              <h2 className="text-lg font-semibold text-gray-900">New Snippet</h2>
+            </header>
 
-                {/* Code Preview */}
-                <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
-                  <code>{snippet.code}</code>
-                </pre>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {snippet.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+            <div className="grid gap-4 px-6 py-5">
+              <div className="grid gap-1.5">
+                <label htmlFor="title" className={labelClass}>Title</label>
+                <input id="title" name="title" type="text" required placeholder="Array Reduce Pattern" className={fieldClass} />
               </div>
-            </Card>
+
+              <div className="grid gap-1.5">
+                <label htmlFor="language" className={labelClass}>Language</label>
+                <input id="language" name="language" type="text" required placeholder="javascript" className={fieldClass} />
+              </div>
+
+              <div className="grid gap-1.5">
+                <label htmlFor="code" className={labelClass}>Code</label>
+                <textarea id="code" name="code" rows={5} required placeholder="const sum = arr.reduce((acc, n) => acc + n, 0)" className={`${fieldClass} resize-y font-mono`} />
+              </div>
+
+              <div className="grid gap-1.5">
+                <label htmlFor="tags" className={labelClass}>Tags</label>
+                <input id="tags" name="tags" type="text" placeholder="javascript, array, functional" className={fieldClass} />
+                <p className="text-xs text-gray-500">Separate tags with commas.</p>
+              </div>
+            </div>
+
+            <footer className="flex justify-end gap-3 border-t border-gray-200 px-6 py-4">
+              <Button type="button" variant="secondary" onClick={() => dialogRef.current?.close()}>
+                Cancel
+              </Button>
+              <Button type="submit">Create snippet</Button>
+            </footer>
+          </form>
+        </dialog>
+        {/*   - Overlay: fixed position, dark semi-transparent background */}
+        {/*   - Modal: white box, centered, max-width 600px */}
+        {/*   - Title input: controlled input for newSnippet.title */}
+        {/*   - Language select: dropdown with javascript, typescript, python, go, rust */}
+        {/*   - Code textarea: controlled textarea for newSnippet.code */}
+        {/*   - Tags input: controlled input for comma-separated tags */}
+        {/*   - Cancel Button: onClick={() => setShowModal(false)} */}
+        {/*   - Create Button: onClick={handleCreateSnippet} (create this function) */}
+        {/* TODO: Add grid div that maps over mockSnippets */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {snippets.map((snippet) => (
+            <SnippetCard
+              key={snippet.id}
+              title={snippet.title}
+              language={snippet.language}
+              code={snippet.code}
+              tags={snippet.tags}
+              createdAt={snippet.createdAt}
+            />
           ))}
         </div>
         {/*   - Use Tailwind classes: grid gap-6 md:grid-cols-2 lg:grid-cols-3 */}
         {/*   - Map each snippet to a Card component */}
         {/*   - Inside Card, show: title, language, code preview, tags */}
       </div>
-    </div>
+    </div >
   )
 }

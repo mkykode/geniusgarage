@@ -9,17 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@geniusgarage/tailwind-config": "workspace:^",
     "@geniusgarage/ui": "workspace:*",
     "next": "16.0.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^16.0.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5"
   }
 }
