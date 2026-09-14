@@ -1,0 +1,16 @@
+{
+  "name": "@geniusgarage/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dependencies": {
+    "eslint-config-next": "^16.0.0",
+    "eslint-config-prettier": "^10.1.1"
+  },
+  "peerDependencies": {
+    "eslint": "^9"
+  }
+}

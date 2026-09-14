@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@geniusgarage/tailwind-config": "workspace:^",
+    "@geniusgarage/eslint-config": "workspace:^",
+    "@geniusgarage/typescript-config": "workspace:^",
     "@geniusgarage/ui": "workspace:^",
     "next": "16.3.4",
     "react": "19.2.8",
