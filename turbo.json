@@ -2,15 +2,21 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "remoteCache": {
-    "enabled": true
+    "enabled": false
   },
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
+    },
+    "typegen": {
+      "cache": false
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck", "typegen"]
     },
     "dev": {
       "cache": false,

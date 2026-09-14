@@ -1,8 +1,6 @@
-import { cookies, headers } from 'next/headers'
-import Link from 'next/link'
 import { Card } from '@geniusgarage/ui/card'
 
-export default async function Features(props: PageProps<'/features'>) {
+export default async function Features() {
 
   return (
     <>

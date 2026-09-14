@@ -17,21 +17,18 @@ importers:
 
   apps/snippet-manager:
     dependencies:
-      '@geniusgarage/eslint-config':
-        specifier: workspace:^
-        version: link:../../packages/eslint-config
       '@geniusgarage/tailwind-config':
         specifier: workspace:^
         version: link:../../packages/tailwind-config
-      '@geniusgarage/typescript-config':
-        specifier: workspace:^
-        version: link:../../packages/typescript-config
       '@geniusgarage/ui':
         specifier: workspace:^
         version: link:../../packages/ui
+      '@geniusgarage/utils':
+        specifier: workspace:^
+        version: link:../../packages/utils
       next:
         specifier: 16.3.4
-        version: 16.3.4(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 16.3.4(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -39,6 +36,12 @@ importers:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
     devDependencies:
+      '@geniusgarage/eslint-config':
+        specifier: workspace:^
+        version: link:../../packages/eslint-config
+      '@geniusgarage/typescript-config':
+        specifier: workspace:^
+        version: link:../../packages/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.3.3
         version: 4.3.3
@@ -54,9 +57,6 @@ importers:
       eslint:
         specifier: ^9
         version: 9.39.5(jiti@2.7.0)
-      eslint-config-next:
-        specifier: 16.3.4
-        version: 16.3.4(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -66,15 +66,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@geniusgarage/eslint-config':
-        specifier: workspace:^
-        version: link:../../packages/eslint-config
       '@geniusgarage/tailwind-config':
         specifier: workspace:^
         version: link:../../packages/tailwind-config
-      '@geniusgarage/typescript-config':
-        specifier: workspace:^
-        version: link:../../packages/typescript-config
       '@geniusgarage/ui':
         specifier: workspace:^
         version: link:../../packages/ui
@@ -88,6 +82,12 @@ importers:
         specifier: ^19.0.0
         version: 19.3.0(react@19.3.0)
     devDependencies:
+      '@geniusgarage/eslint-config':
+        specifier: workspace:^
+        version: link:../../packages/eslint-config
+      '@geniusgarage/typescript-config':
+        specifier: workspace:^
+        version: link:../../packages/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.3.3
         version: 4.3.3
@@ -103,9 +103,6 @@ importers:
       eslint:
         specifier: ^9
         version: 9.39.5(jiti@2.7.0)
-      eslint-config-next:
-        specifier: ^16.0.0
-        version: 16.3.4(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -115,19 +112,49 @@ importers:
 
   packages/eslint-config:
     dependencies:
-      eslint:
-        specifier: ^9
-        version: 9.39.5(jiti@2.7.0)
+      '@eslint/js':
+        specifier: ^9.39.5
+        version: 9.39.5
       eslint-config-next:
         specifier: ^16.0.0
-        version: 16.3.4(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
+        version: 16.3.4(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
       eslint-config-prettier:
         specifier: ^10.1.1
         version: 10.1.8(eslint@9.39.5(jiti@2.7.0))
+      eslint-plugin-jsx-a11y:
+        specifier: ^6.10.2
+        version: 6.10.2(eslint@9.39.5(jiti@2.7.0))
+      eslint-plugin-react:
+        specifier: ^7.37.5
+        version: 7.37.5(eslint@9.39.5(jiti@2.7.0))
+      eslint-plugin-react-hooks:
+        specifier: ^7.1.1
+        version: 7.1.1(eslint@9.39.5(jiti@2.7.0))
+      globals:
+        specifier: ^16.4.0
+        version: 16.4.0
+      typescript-eslint:
+        specifier: ^8.70.0
+        version: 8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
+    devDependencies:
+      eslint:
+        specifier: ^9
+        version: 9.39.5(jiti@2.7.0)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
 
-  packages/tailwind-config: {}
+  packages/tailwind-config:
+    devDependencies:
+      prettier:
+        specifier: ^3.2.5
+        version: 3.9.6
 
-  packages/typescript-config: {}
+  packages/typescript-config:
+    devDependencies:
+      prettier:
+        specifier: ^3.2.5
+        version: 3.9.6
 
   packages/ui:
     dependencies:
@@ -138,12 +165,36 @@ importers:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.3.0(react@19.3.0)
     devDependencies:
+      '@geniusgarage/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@geniusgarage/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
       '@types/react':
         specifier: ^19
         version: 19.3.0
       '@types/react-dom':
         specifier: ^19
         version: 19.3.0(@types/react@19.3.0)
+      eslint:
+        specifier: ^9
+        version: 9.39.5(jiti@2.7.0)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  packages/utils:
+    devDependencies:
+      '@geniusgarage/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@geniusgarage/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: ^9
+        version: 9.39.5(jiti@2.7.0)
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -3496,26 +3547,6 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
-  eslint-config-next@16.3.4(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3):
-    dependencies:
-      '@next/eslint-plugin-next': 16.3.4(eslint@9.39.5(jiti@2.7.0))
-      eslint: 9.39.5(jiti@2.7.0)
-      eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.5(jiti@2.7.0))
-      eslint-plugin-import: 2.32.0(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5(jiti@2.7.0))
-      eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.5(jiti@2.7.0))
-      eslint-plugin-react: 7.37.5(eslint@9.39.5(jiti@2.7.0))
-      eslint-plugin-react-hooks: 7.1.1(eslint@9.39.5(jiti@2.7.0))
-      globals: 16.4.0
-      typescript-eslint: 8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
-    optionalDependencies:
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-webpack
-      - eslint-plugin-import-x
-      - supports-color
-
   eslint-config-prettier@10.1.8(eslint@9.39.5(jiti@2.7.0)):
     dependencies:
       eslint: 9.39.5(jiti@2.7.0)
@@ -3578,33 +3609,6 @@ snapshots:
       tsconfig-paths: 3.15.0
     optionalDependencies:
       '@typescript-eslint/parser': 8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
-    transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-
-  eslint-plugin-import@2.32.0(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5(jiti@2.7.0)):
-    dependencies:
-      '@rtsao/scc': 1.1.0
-      array-includes: 3.2.0
-      array.prototype.findlastindex: 1.2.6
-      array.prototype.flat: 1.3.3
-      array.prototype.flatmap: 1.3.3
-      debug: 3.2.7
-      doctrine: 2.1.0
-      eslint: 9.39.5(jiti@2.7.0)
-      eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.14.0(@typescript-eslint/parser@8.70.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5(jiti@2.7.0))
-      hasown: 2.0.4
-      is-core-module: 2.16.2
-      is-glob: 4.0.3
-      minimatch: 3.1.5
-      object.fromentries: 2.0.8
-      object.groupby: 1.0.3
-      object.values: 1.2.1
-      semver: 6.3.1
-      string.prototype.trimend: 1.0.10
-      tsconfig-paths: 3.15.0
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -4182,7 +4186,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  next@16.3.4(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+  next@16.3.4(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       '@next/env': 16.3.4
       '@swc/helpers': 0.5.23
@@ -4191,7 +4195,7 @@ snapshots:
       postcss: 8.5.23
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
-      styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.2.8)
+      styled-jsx: 5.1.6(react@19.2.8)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.3.4
       '@next/swc-darwin-x64': 16.3.4
@@ -4594,12 +4598,10 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  styled-jsx@5.1.6(@babel/core@7.29.7)(react@19.2.8):
+  styled-jsx@5.1.6(react@19.2.8):
     dependencies:
       client-only: 0.0.1
       react: 19.2.8
-    optionalDependencies:
-      '@babel/core': 7.29.7
 
   styled-jsx@5.1.6(react@19.3.0):
     dependencies:

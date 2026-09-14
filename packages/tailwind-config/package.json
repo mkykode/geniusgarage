@@ -2,7 +2,13 @@
   "name": "@geniusgarage/tailwind-config",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "lint": "prettier --check \"*.{json,css}\""
+  },
   "exports": {
     "./theme.css": "./theme.css"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
   }
 }

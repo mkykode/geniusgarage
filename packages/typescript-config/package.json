@@ -1,5 +1,15 @@
 {
   "name": "@geniusgarage/typescript-config",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "lint": "prettier --check \"*.json\""
+  },
+  "exports": {
+    "./base.json": "./base.json",
+    "./nextjs.json": "./nextjs.json"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
 }

@@ -1,9 +1,9 @@
 'use client'
 
-import { Button } from "@geniusgarage/ui/button"
-import { SnippetCard } from "@geniusgarage/ui/snippet-card";
-import { useRef, useState } from "react";
-
+import { useRef, useState } from 'react'
+import { Button } from '@geniusgarage/ui/button'
+import { SnippetCard } from '@geniusgarage/ui/snippet-card'
+import { formatDate } from '@geniusgarage/utils'
 // TODO: Import Button from '@geniusgarage/ui/button'
 // TODO: Import Card from '@geniusgarage/ui/card'
 
@@ -24,7 +24,7 @@ interface Snippet {
   language: string
   code: string
   tags: string[]
-  createdAt: string
+  createdAt: Date  // Changed from string to Date
 }
 const initialSnippets: Snippet[] = [
   {
@@ -33,7 +33,7 @@ const initialSnippets: Snippet[] = [
     language: 'javascript',
     code: 'const sum = arr.reduce((acc, n) => acc + n, 0)',
     tags: ['javascript', 'array', 'functional'],
-    createdAt: 'Jan 15, 2026',  // Add this
+    createdAt: new Date('2024-01-15'),  // Date object
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const initialSnippets: Snippet[] = [
   return () => clearTimeout(timer)
 }, [])`,
     tags: ['react', 'hooks', 'typescript'],
-    createdAt: 'Feb 20, 2026',  // Add this
+    createdAt: new Date('2024-02-20'),  // Date object
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const initialSnippets: Snippet[] = [
     language: 'javascript',
     code: 'const results = await Promise.all(promises.map(p => p()))',
     tags: ['javascript', 'async', 'promises'],
-    createdAt: 'Mar 10, 2026',  // Add this
+    createdAt: new Date('2024-03-10'),  // Date object
   },
 ]
 const labelClass = 'text-sm font-medium text-gray-700'
@@ -96,7 +96,7 @@ export default function Home() {
                 language: String(data.get('language') ?? ''),
                 code: String(data.get('code') ?? ''),
                 tags: String(data.get('tags') ?? '')?.split(',').map(s => s.trim()).filter(Boolean),
-                createdAt: new Date().toLocaleDateString('en-us', { month: 'short', day: 'numeric', year: 'numeric' })
+                createdAt: new Date()  // Now a Date object
               }
               setSnippets((prev) => [
                 ...prev,
@@ -157,7 +157,7 @@ export default function Home() {
               language={snippet.language}
               code={snippet.code}
               tags={snippet.tags}
-              createdAt={snippet.createdAt}
+              createdAt={formatDate(snippet.createdAt)}
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
 type ButtonProps = ComponentPropsWithoutRef<'button'> & {
   variant?: 'primary' | 'secondary';
@@ -18,11 +18,6 @@ export function Button({ children, variant = 'primary', ...props }: ButtonProps)
   const variantStyles = {
     primary: { background: '#d946ef', color: 'white' },
     secondary: { background: '#f3f4f6', color: '#1f2937', border: '1px solid #e5e7eb' },
-  }
-
-  const hoverStyles = {
-    transform: 'translateY(-1px)',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
   }
 
   return (
