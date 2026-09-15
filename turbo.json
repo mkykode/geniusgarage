@@ -13,15 +13,13 @@
       "dependsOn": ["^lint"]
     },
     "test": {
-      "dependsOn": ["^build"],
-      "outputs": ["coverage/**"]
+      "dependsOn": ["^build"]
     },
-
     "typegen": {
       "cache": false
     },
     "typecheck": {
-      "dependsOn": ["^typecheck", "typegen"]
+      "dependsOn": ["^typecheck", "typegen", "build"]
     },
     "dev": {
       "cache": false,
