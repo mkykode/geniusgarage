@@ -21,10 +21,11 @@ pnpm run typecheck
 pnpm run build
 ```
 
-`lint` runs checks in all six workspace packages:
+`lint` runs checks in all seven workspace packages:
 
 - Both apps use the shared Next.js ESLint preset.
 - `packages/ui` uses the shared React, Hooks, and JSX accessibility preset.
+- `packages/utils` uses the shared base JavaScript/TypeScript preset.
 - `packages/eslint-config` checks its own JavaScript with the base preset.
 - `packages/typescript-config` and `packages/tailwind-config` use Prettier to
   check JSON/CSS syntax and formatting. Their configuration is also consumed by
@@ -37,7 +38,7 @@ dependencies, pass a Turbo filter:
 pnpm run lint --filter=@geniusgarage/ui
 ```
 
-`typecheck` checks both apps and the shared UI. Turbo runs `next typegen` before
+`typecheck` checks both apps, the shared UI, and utils. Turbo runs `next typegen` before
 each app's TypeScript check, so generated route types are available without a
 previous build or dev session. Type generation always runs; successful lint and
 type-check results can be cached.
