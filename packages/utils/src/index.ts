@@ -27,3 +27,6 @@ export function validateEmail(email: string): boolean {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return regex.test(email)
 }
+
+// Temporary: verifying that CI's --affected filter narrows the run to
+// this package and its dependents. Revert before merging.
