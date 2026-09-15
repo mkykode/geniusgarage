@@ -40,7 +40,6 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run build, lint, typecheck, and test
-        # run: pnpm exec turbo build lint typecheck test ${{ github.event_name == 'pull_request' && '--affected' || '' }}
-        run: turbo build lint test --filter=[origin/main]
+        run: pnpm exec turbo build lint typecheck test ${{ github.event_name == 'pull_request' && '--affected' || '' }}
         env:
           TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha }}
