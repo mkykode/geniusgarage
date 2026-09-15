@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 
 type ButtonProps = ComponentPropsWithoutRef<'button'> & {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'danger';
 };
 
 const BUTTON_BASE =
@@ -10,6 +10,7 @@ const BUTTON_BASE =
 const BUTTON_VARIANTS = {
   primary: 'bg-brand border-transparent text-white hover:brightness-110',
   secondary: 'bg-brand-muted border-gray-200 text-gray-900 hover:bg-gray-200',
+  danger: 'bg-red-500 text-white hover:bg-red-600',
 } as const
 
 export function Button({ children, variant = 'primary', className, ...props }: ButtonProps) {

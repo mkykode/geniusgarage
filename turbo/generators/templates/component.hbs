@@ -1,0 +1,9 @@
+import { PropsWithChildren } from 'react'
+
+type {{ pascalCase name }}Props = PropsWithChildren<{
+  className?: string
+}>
+
+export function {{ pascalCase name }}({ className, children }: {{ pascalCase name }}Props) {
+  return <div className={className}>{children}</div>
+}
