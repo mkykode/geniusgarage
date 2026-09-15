@@ -6,19 +6,11 @@ type CodeBlockProps = PropsWithChildren<{
 }>
 export function CodeBlock({ code, language = 'javascript' }: CodeBlockProps) {
   return (
-    <div style={{
-      backgroundColor: '#1e1e1e',
-      color: '#d4d4d4',
-      padding: '1rem',
-      borderRadius: '0.5rem',
-      overflow: 'auto',
-      fontFamily: 'monospace',
-      fontSize: '1.2rem',  // Changed from 0.9rem
-    }}>
-      <div style={{ opacity: 0.6, marginBottom: '0.5rem', fontSize: '0.8rem' }}>
+    <div className="overflow-auto p-4 font-mono text-lg text-gray-300 bg-gray-900 rounded-lg">
+      <div className="mb-2 text-xs opacity-60">
         {language}
       </div>
-      <pre style={{ margin: 0 }}>
+      <pre className="m-0">
         <code>{code}</code>
       </pre>
     </div>

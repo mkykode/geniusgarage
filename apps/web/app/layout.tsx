@@ -1,3 +1,4 @@
+import "./global.css"
 import NavLink from "@/components/NavLink"
 
 export const metadata = {

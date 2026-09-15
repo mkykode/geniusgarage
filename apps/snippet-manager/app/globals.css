@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "@geniusgarage/tailwind-config/theme.css";
 
+/* Shared components live outside this app's auto-detected source tree. */
+@source "../../../packages/ui/src";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

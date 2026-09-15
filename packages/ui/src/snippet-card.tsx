@@ -1,28 +1,14 @@
-import { PropsWithChildren } from 'react';
 import { Card } from './card'
-// TODO: Import Card from './card'
-// TODO: Import CodeBlock from './code-block'
+import { CodeBlock } from './code-block'
 
-// TODO: Define SnippetCardProps interface with:
-//   - title: string
-//   - language: string
-//   - code: string
-//   - tags: string[]
-//   - createdAt: string
-
-type SnippetCardProps = PropsWithChildren<{
+type SnippetCardProps = {
   title: string
   language: string
   code: string
   tags: string[]
   createdAt: string
-}>
-// TODO: Export SnippetCard function component that:
-//   - Wraps everything in a Card component
-//   - Shows title as h3
-//   - Shows createdAt below title
-//   - Renders CodeBlock with code and language
-//   - Maps over tags and renders each as a styled span
+}
+
 export function SnippetCard(props: SnippetCardProps) {
 
   const {
@@ -33,21 +19,22 @@ export function SnippetCard(props: SnippetCardProps) {
     createdAt
   } = props
   return <Card>
-    {title && <h3>{title}</h3>}
-    {createdAt && <time>{createdAt}</time>}
-    <pre
-
-    >
-      <code data-language={language}>
-        {code}
-      </code>
-    </pre>
-    {
-      tags.map(
-        (tag, i) => {
-          return <span key={tag}>{i !== 0 && ", "}{tag}</span>
-        }
-      )
-    }
+    <h3 className="mt-0 mb-1 text-xl font-bold text-gray-900">{title}</h3>
+    <time className="block mb-4 text-xs text-gray-500">{createdAt}</time>
+    <CodeBlock code={code} language={language} />
+    <div className="flex flex-wrap gap-2 mt-4">
+      {
+        tags.map(
+          (tag) => {
+            return <span
+              key={tag}
+              className="px-3 py-1 text-xs font-medium text-gray-700 bg-brand-muted rounded-full"
+            >
+              {tag}
+            </span>
+          }
+        )
+      }
+    </div>
   </Card>
 }

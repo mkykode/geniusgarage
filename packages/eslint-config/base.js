@@ -10,7 +10,15 @@ export const typescriptRules = {
 }
 
 export default defineConfig([
-  globalIgnores(['.next/**', '.turbo/**', 'out/**', 'build/**', 'dist/**', 'next-env.d.ts']),
+  globalIgnores([
+    '.next/**',
+    '.turbo/**',
+    'out/**',
+    'build/**',
+    'dist/**',
+    'coverage/**',
+    'next-env.d.ts',
+  ]),
   js.configs.recommended,
   tseslint.configs.recommended,
   {

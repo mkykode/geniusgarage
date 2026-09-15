@@ -7,12 +7,15 @@ export function formatDate(date: Date): string {
 }
 
 export function slugify(text: string): string {
+  // NFD splits accented letters into base + combining mark, and the
+  // character filter below drops the marks along with other punctuation.
   return text
+    .normalize('NFD')
     .toLocaleLowerCase()
     .replace(/[^\w\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
-    .trim()
+    .replace(/^-|-$/g, '')
 }
 
 export function truncate(text: string, maxLength: number): string {

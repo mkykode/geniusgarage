@@ -8,12 +8,15 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings=0",
-    "typecheck": "tsc --noEmit --incremental false"
+    "typecheck": "tsc --noEmit --incremental false",
+    "test": "vitest run",
+    "dev:test": "vitest"
   },
   "devDependencies": {
-    "@geniusgarage/typescript-config": "workspace:*",
     "@geniusgarage/eslint-config": "workspace:*",
+    "@geniusgarage/typescript-config": "workspace:*",
     "eslint": "^9",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.0"
   }
 }

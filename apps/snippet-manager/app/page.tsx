@@ -33,7 +33,7 @@ const initialSnippets: Snippet[] = [
     language: 'javascript',
     code: 'const sum = arr.reduce((acc, n) => acc + n, 0)',
     tags: ['javascript', 'array', 'functional'],
-    createdAt: new Date('2024-01-15'),  // Date object
+    createdAt: new Date(2024, 0, 15),  // local midnight; an ISO date string would parse as UTC
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const initialSnippets: Snippet[] = [
   return () => clearTimeout(timer)
 }, [])`,
     tags: ['react', 'hooks', 'typescript'],
-    createdAt: new Date('2024-02-20'),  // Date object
+    createdAt: new Date(2024, 1, 20),
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const initialSnippets: Snippet[] = [
     language: 'javascript',
     code: 'const results = await Promise.all(promises.map(p => p()))',
     tags: ['javascript', 'async', 'promises'],
-    createdAt: new Date('2024-03-10'),  // Date object
+    createdAt: new Date(2024, 2, 10),
   },
 ]
 const labelClass = 'text-sm font-medium text-gray-700'
